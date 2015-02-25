@@ -1,0 +1,5 @@
+SET LINESIZE 120;
+SELECT
+	TL.CODE_TYPE_LOGEMENT AS [Code Type Logement],
+	TL.DESCRIPTION AS [Description Type Logement],
+	
