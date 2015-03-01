@@ -2,9 +2,9 @@ SET LINESIZE 120;
 SELECT 
 	V.NOM_VILLAGE AS Nom,
 	V.PAYS AS Pays,
-	V.NO_CATEGORIE AS [Code Catégorie],
-	C.DESCRIPTION AS [Description Catégorie],
-	FORMAT(V.PRIX_TRANSPORT, money) AS [Coût Transport Par Personne]
+	V.NO_CATEGORIE AS "Code Catégorie",
+	C.DESCRIPTION AS "Description Catégorie",
+	TO_CHAR(V.PRIX_TRANSPORT, '9,999.00') AS "Coût Transport Par Personne"
 FROM VILLAGE V
 		INNER JOIN CATEGORIE_VILLAGE C
 			ON	V.NO_CATEGORIE = C.NO_CATEGORIE
