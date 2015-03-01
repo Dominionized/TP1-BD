@@ -1,10 +1,10 @@
 SET LINESIZE 120;
 SELECT
-	TL.CODE_TYPE_LOGEMENT AS [Type Logement],
-	TL.DESCRIPTION AS [Description Logement],
-	TN.CATEGORIE AS [Catégorie Village],
-	C.DESCRIPTION AS [Description Village],
-	FORMAT(TN.TARIF_UNITAIRE, money) AS [Prix/Nuit/Personne]
+	TL.CODE_TYPE_LOGEMENT AS "Type Logement",
+	TL.DESCRIPTION AS "Description Logement",
+	TN.CATEGORIE AS "Catégorie Village",
+	C.DESCRIPTION AS "Description Village",
+	TO_CHAR(TN.TARIF_UNITAIRE, '9,999.00') AS "Prix/Nuit/Personne"
 FROM TYPE_LOGEMENT TL
 	INNER JOIN TARIF_NUIT TN
 		ON TL.CODE_TYPE_LOGEMENT = TN.TYPE_LOGEMENT 
