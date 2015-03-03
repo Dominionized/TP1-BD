@@ -4,7 +4,7 @@ SELECT
 	V.PAYS AS Pays,
 	V.NO_CATEGORIE AS "Code Catégorie",
 	C.DESCRIPTION AS "Description Catégorie",
-	TO_CHAR(V.PRIX_TRANSPORT, '9,999.00') AS "Coût Transport Par Personne"
+	TO_CHAR(V.PRIX_TRANSPORT, '9,999.00') || ' $CAN'  AS "Coût Transport Par Personne"
 FROM VILLAGE V
 		INNER JOIN CATEGORIE_VILLAGE C
 			ON	V.NO_CATEGORIE = C.NO_CATEGORIE
