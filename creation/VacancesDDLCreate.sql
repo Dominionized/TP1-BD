@@ -1,4 +1,11 @@
-/* Table Client */
+/* **********************************************************
+ DDL - Create
+ Schéma MRD: "Cas Village Vacances"  - VERSIONS 1 et 2
+ Auteur: Dominique Bégin, Maxime Laboissonniere, Gérémy Sorlini - Cégep de Ste-Foy   
+***********************************************************/
+
+
+/* Création Table Client */
 CREATE TABLE CLIENT (
     NO_CLIENT       NUMERIC(6,0),
     NOM             VARCHAR2(15) NOT NULL,
@@ -13,6 +20,7 @@ CREATE TABLE CLIENT (
 		CHECK (SEXE LIKE '[FM]%')
 );
 
+/* Création Table Catégorie Village */
 CREATE TABLE CATEGORIE_VILLAGE (
     NO_CATEGORIE        SMALLINT,
     DESCRIPTION         VARCHAR2(50) NOT NULL UNIQUE,
@@ -22,6 +30,7 @@ CREATE TABLE CATEGORIE_VILLAGE (
 		CHECK (NO_CATEGORIE >= 1 AND NO_CATEGORIE <= 5)
 );
 
+/* Création Table Village */
 CREATE TABLE VILLAGE (
     NOM_VILLAGE         VARCHAR2(15),
     NO_CATEGORIE        SMALLINT NOT NULL,
@@ -37,6 +46,7 @@ CREATE TABLE VILLAGE (
 		CHECK (PRIX_TRANSPORT > 0)
 );
 
+/* Création Table Réservations */
 CREATE TABLE RESERVATION (
     NO_RESERVATION      NUMERIC(6,0),
     DATE_RESERVATION    DATE DEFAULT SYSDATE NOT NULL,
@@ -56,6 +66,7 @@ CREATE TABLE RESERVATION (
 		CHECK (DEBUT_SEJOUR < FIN_SEJOUR)
 );
 
+/* Création Table Types Logements*/
 CREATE TABLE TYPE_LOGEMENT (
     CODE_TYPE_LOGEMENT      VARCHAR2(2),
     DESCRIPTION             VARCHAR2(35) NOT NULL UNIQUE,
@@ -68,6 +79,7 @@ CREATE TABLE TYPE_LOGEMENT (
 		CHECK (NB_MAX_PERSONNES <= 10)
 );
 
+/* Création Table Tarifs Nuit*/
 CREATE TABLE TARIF_NUIT (
     CATEGORIE       SMALLINT NOT NULL,
     TYPE_LOGEMENT   VARCHAR2(2) NOT NULL,
@@ -84,6 +96,7 @@ CREATE TABLE TARIF_NUIT (
 		CHECK (TARIF_UNITAIRE >= 20 AND TARIF_UNITAIRE <= 300)
 );
 
+/* Création Table Logement*/
 CREATE TABLE LOGEMENT (
     NO_LOGEMENT             SMALLINT,
     NOM_VILLAGE             VARCHAR2(15),
@@ -99,6 +112,7 @@ CREATE TABLE LOGEMENT (
         REFERENCES TYPE_LOGEMENT(CODE_TYPE_LOGEMENT)
 );
 
+/* Création Table Sejours*/
 CREATE TABLE SEJOUR (
     NO_LOGEMENT             SMALLINT,
     NOM_VILLAGE             VARCHAR2(15),
@@ -115,6 +129,8 @@ CREATE TABLE SEJOUR (
 );
 
 DROP SEQUENCE SEQ_NO_CLIENT;
+
+/* Script Séquence Numéro Client */
 CREATE SEQUENCE SEQ_NO_CLIENT
 	MINVALUE 1
 	MAXVALUE 999999
@@ -124,6 +140,8 @@ CREATE SEQUENCE SEQ_NO_CLIENT
 	NOCYCLE;
 
 DROP SEQUENCE SEQ_NO_RESERVATION;
+
+/* Script Séquence Numéro Réservations */
 CREATE SEQUENCE SEQ_NO_RESERVATION
 	MINVALUE 1
 	MAXVALUE 999999
