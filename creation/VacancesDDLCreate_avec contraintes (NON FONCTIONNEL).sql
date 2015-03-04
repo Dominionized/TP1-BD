@@ -15,7 +15,9 @@ CREATE TABLE CLIENT (
     ADRESSE         VARCHAR2(50),
     TEL_BUREAU      NUMERIC(10,0),
     CONSTRAINT PK_CLIENT
-        PRIMARY KEY (NO_CLIENT)
+        PRIMARY KEY (NO_CLIENT),
+	CONSTRAINT CHK_SEXE
+		CHECK (SEXE LIKE '[FM]%')
 );
 
 /* Création Table Catégorie Village */
