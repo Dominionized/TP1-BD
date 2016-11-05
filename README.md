@@ -1,2 +1,2 @@
 # dogesql
-Tp1 for ye - BD 2015
+Tp1 for François Drouin - BD 2015
